@@ -1,19 +1,24 @@
 class CreateOrderDto:
     customer_id: int
-    product_id: int
+    product_name: int
     status: str
     paid: str
     shipping_address: str
     order_reference: str
+    unit_price: float
+    quantity: int
+    customer_last_name: str
 
 
 class EditOrderDto:
-    product_id: str
+    customer_id: int
+    product_name: int
     status: str
     paid: str
     shipping_address: str
     order_reference: str
-    status: str
+    unit_price: float
+    quantity: int
 
 
 class ListOrderDto:

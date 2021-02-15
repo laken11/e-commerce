@@ -1,3 +1,4 @@
+import datetime
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
@@ -33,7 +34,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
-    Product = models.ManyToManyField(Product, through='OrderDetails')
+    product = models.ManyToManyField(Product, through='OrderDetails')
     status = models.CharField(max_length=10)
     paid = models.BooleanField(default=False)
     shipping_address = models.CharField(max_length=500)
@@ -60,11 +61,6 @@ class ProductImage(models.Model):
 class OrderDetails(models.Model):
     quantity = models.IntegerField()
     unit_price = models.FloatField()
-    order = models.ForeignKey(Order, on_delete=models.RESTRICT)
-    product = models.ForeignKey(Product, on_delete=models.RESTRICT)
-
-
-
-
-
-
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    date_crated = models.DateField(default=datetime.date.today())

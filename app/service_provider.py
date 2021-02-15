@@ -9,6 +9,8 @@ from app.repositories.CategoryReopsitory import CategoryRepository, DjangoORMCat
 from app.services.CategoryManagementService import CategoryManagementService, DefaultCategoryManagementService
 from app.repositories.ProductReopsitory import DjangoORMProductRepository, ProductRepository
 from app.services.ProductManagementService import ProductManagementService, DefaultProductManagementService
+from app.repositories.OrderRepository import OrderRepository, DjangoORMOrderRepository
+from app.services.OrderManagementService import OrderManagementService, DefaultOrderManagementService
 
 
 class Container(containers.DeclarativeContainer):
@@ -41,6 +43,13 @@ class Container(containers.DeclarativeContainer):
     product_management_service: Callable[[], ProductManagementService] = providers.Factory(
         DefaultProductManagementService,
         repository=product_repository
+    )
+    order_repository: Callable[[], OrderRepository] = providers.Factory(
+        DjangoORMOrderRepository
+    )
+    order_management_service: Callable[[], OrderManagementService] = providers.Factory(
+        DefaultOrderManagementService,
+        repository=order_repository
     )
 
 
