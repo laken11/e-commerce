@@ -1,0 +1,7 @@
+Django~=3.1.5
+djangorestframework~=3.12.2
+uuid~=1.30
+pip~=21.0.1
+wheel~=0.36.2
+setuptools~=49.2.1
+docutils~=0.16
