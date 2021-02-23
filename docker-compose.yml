@@ -1,0 +1,33 @@
+version: "3.9"
+services: 
+  web:
+    build: .
+    ports:
+      -"80:8087"
+      -"443:8087"
+    volumes: 
+      - datavolume:/var/lib/mysql
+    networks: 
+      - mypythonapplication
+    depends_on: 
+      -db
+    env_file:
+      - .env
+  db:
+    image: "mysql:latest"
+    ports: 
+      -"3306:3306"
+    volumes: 
+      - datavolume:/var/lib/mysql
+    networks: 
+      - mypythonapplication
+    environment: 
+      
+    env_file: 
+      - .env
+volumes: 
+  datavolume:
+    external: true
+networks: 
+  mypythonapplication:
+    extends: true
